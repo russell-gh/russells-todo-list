@@ -56,6 +56,20 @@ class App extends Component {
     this.setState({ todos });
   };
 
+  onSortAsc = () => {
+    const todos = [...this.state.todos];
+
+    todos.sort((item, nextItem) => {
+      if (item.name < nextItem.name) return -1;
+
+      if (item.name > nextItem.name) return 1;
+
+      return 0;
+    });
+
+    this.setState({ todos });
+  };
+
   render() {
     return (
       <>
@@ -63,6 +77,7 @@ class App extends Component {
         <div className="controls">
           <input onInput={this.onInput} type="text" />
           <button onClick={this.onAdd}>Add</button>
+          <button onClick={this.onSortAsc}>Sort asc</button>
         </div>
 
         {/* below is the code that creates the todo display */}
